@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @Getter
 public class UpdateManualRequest {
     private String manualName;
-    private String manualContent;
+    private String category;
 
 }

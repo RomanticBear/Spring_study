@@ -32,6 +32,6 @@ public class Store {
     @Column(nullable = false, length = 255)
     private String detailedAddress;
 
-//    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-//    private List<Manual> manuals;
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Manual> manuals;
 }

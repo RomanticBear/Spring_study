@@ -17,10 +17,10 @@ import me.gom.springbootdeveloper.domain.Manual;
 public class ManualResponse {
 
     private String manualName;
-    private String manualContent;
+    private String category;
 
     public ManualResponse(Manual manual){
         this.manualName=manual.getManualName();
-        this.manualContent=manual.getManualContent();
+        this.category=manual.getCategory();
     }
 }

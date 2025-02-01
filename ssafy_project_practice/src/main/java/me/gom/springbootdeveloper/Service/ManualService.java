@@ -6,9 +6,11 @@ package me.gom.springbootdeveloper.Service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import me.gom.springbootdeveloper.domain.Manual;
+import me.gom.springbootdeveloper.domain.Store;
 import me.gom.springbootdeveloper.dto.AddMaualRequest;
 import me.gom.springbootdeveloper.dto.UpdateManualRequest;
 import me.gom.springbootdeveloper.repository.ManualRepository;
+import me.gom.springbootdeveloper.repository.StoreRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,12 +21,16 @@ import java.util.List;
 public class ManualService {
 
     private final ManualRepository manualRepository;
+    private final StoreRepository storeRepository;
 
-    // 메뉴얼 추가 메서드
-    public Manual save(AddMaualRequest request){
-        return manualRepository.save(request.toEntity());
+    // 메뉴얼 추가 메서드 수정
+    public Manual save(AddMaualRequest request) {
+        // storeId로 Store 객체 조회
+        Store store = storeRepository.findById(request.getStoreId())
+                .orElseThrow(() -> new IllegalArgumentException("Store not found: " + request.getStoreId()));
+
+        return manualRepository.save(request.toEntity(store));
     }
-
     // 메뉴얼 모든 데이터 조회 메서드
     public List<Manual> findAll(){
         return manualRepository.findAll();
@@ -48,7 +54,7 @@ public class ManualService {
         Manual manual=manualRepository.findById(id)
                 .orElseThrow(()->new IllegalArgumentException("not found: " + id));
 
-        manual.update(request.getManualName(), request.getManualContent());
+        manual.update(request.getManualName(), request.getCategory());
 
         return manual;
     }
