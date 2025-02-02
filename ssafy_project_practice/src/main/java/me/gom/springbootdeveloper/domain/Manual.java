@@ -16,8 +16,8 @@ public class Manual {
     private Long manualId;
 
     // Store와의 ManyToOne 관계 설정 (여러 메뉴얼이 하나의 지점에 속함)
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // ✅ Cascade 설정 추가
-    @JoinColumn(name = "storeId", nullable = false, foreignKey = @ForeignKey(name = "fk_store_id"))
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "storeId", nullable = false, foreignKey = @ForeignKey(name = "fk_store_id_manual"))
     private Store store;
 
     // 메뉴얼 카테고리 (예: 음료 제조, 장비, 포스기)

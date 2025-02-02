@@ -1,3 +1,4 @@
+// Store.java
 package me.gom.springbootdeveloper.domain;
 
 import jakarta.persistence.*;
