@@ -24,8 +24,7 @@ public class Store {
     @Column(nullable = false, length = 30)
     private String franchiseName;
 
-    @Column(nullable = false, length = 5)
-    private int zipCode;
+    @Column(nullable = false, length = 5)    private int zipCode;
 
     @Column(nullable = false, length = 255)
     private String roadAddress;
