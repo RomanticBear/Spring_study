@@ -25,7 +25,7 @@ public class WorkInformationService {
                 .filter(info -> LocalDateTime.now().isAfter(info.getWorkDate().atTime(info.getEndTime()))) // 현재 시간 이전의 스케줄만 처리
                 .map(info -> {
                     boolean worked = info.getUser().getUserId().equals(info.getRealTimeWorker());
-                    return new WorkInformationResponse(info, worked);
+                    return new WorkInformationResponse(info, worked); // ✅ storeName도 자동 포함됨
                 })
                 .collect(Collectors.toList());
     }

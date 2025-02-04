@@ -1,4 +1,3 @@
-// WorkInformationApiController.java (Controller)
 package me.gom.springbootdeveloper.controller;
 
 import lombok.RequiredArgsConstructor;
