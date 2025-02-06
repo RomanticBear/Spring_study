@@ -20,15 +20,9 @@ public class ScheduleReference {
     private Long scheduleReferenceId;
 
     // 대타 희망자
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "userId", nullable = false)
     private User user;
-
-    // 필요한가 ,,?
-    // 있다면 다대다 관계 아닌가 ,,?
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "storeId", nullable = false)
-//    private Store store;
 
     // 대타 희망 날짜
     private LocalDate scheduleDate;
