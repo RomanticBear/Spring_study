@@ -29,25 +29,13 @@ public class WorkInformation {
     // 근무정보 - 사용자 관계 -> 다 대 1
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "userId", nullable = false)
-    private User user;
-    
-    // 근무 날짜
-    private LocalDate workDate;
-
-    // 시작 시간
-    private LocalTime startTime;
-
-    // 마감 시간
-    private LocalTime endTime;
-    
-    // 공석 여부
-    private Boolean isVacant;
-
-    // 알바생 출근 시간
-    private LocalTime checkInTime;
-
-    // 알바생 퇴근 시간
-    private LocalTime checkOutTime;
+    private User user;    // 근무자
+    private LocalDate workDate;    // 근무 날짜
+    private LocalTime startTime;    // 시작 시간
+    private LocalTime endTime;    // 마감 시간
+    private Boolean isVacant;    // 공석 여부
+    private LocalTime checkInTime;    // 알바생 출근 시간
+    private LocalTime checkOutTime;    // 알바생 퇴근 시간
 
     // 실제 근무자 - 대타 파악 용도
     // user: 원래 근무 배정자(외래키),  realTimeWorker: 실제 근무자
