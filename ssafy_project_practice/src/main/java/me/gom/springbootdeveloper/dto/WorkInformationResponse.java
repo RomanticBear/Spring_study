@@ -18,11 +18,13 @@ public class WorkInformationResponse {
     private LocalTime calStartTime;    // 계산된 출석 시간
     private LocalTime calEndTime;    // 계산된 퇴근 시간
     private String storeName;    // 근무 지점
-
+    private double extraWorkHours; // 추가 근무 시간 (시간 단위)
 
     // 필요없는 반환 필드 추후 삭제
     public WorkInformationResponse(WorkInformation workInformation, boolean worked,
-                                   LocalTime checkInTime, LocalTime checkOutTime, LocalTime calStartTime, LocalTime calEndTime, String storeName) {
+                                   LocalTime checkInTime, LocalTime checkOutTime,
+                                   LocalTime calStartTime, LocalTime calEndTime,
+                                   String storeName, double extraWorkHours) {
         this.workDate = workInformation.getWorkDate();
         this.startTime = workInformation.getStartTime();
         this.endTime = workInformation.getEndTime();
@@ -32,5 +34,6 @@ public class WorkInformationResponse {
         this.calStartTime = calStartTime;
         this.calEndTime = calEndTime;
         this.storeName = storeName;
+        this.extraWorkHours = extraWorkHours;
     }
 }
