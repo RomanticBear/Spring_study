@@ -11,5 +11,4 @@ import lombok.NoArgsConstructor;
 public class UpdateManualRequest {
     private String manualName;
     private String category;
-
 }

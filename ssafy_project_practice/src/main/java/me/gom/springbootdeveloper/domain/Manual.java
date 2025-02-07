@@ -37,4 +37,10 @@ public class Manual {
     @CreationTimestamp
     @Column(name = "createdTime", nullable = false, updatable = false)
     private LocalDateTime createdTime;
+
+    // 메뉴얼 수정 메서드
+    public void update(String manualName, String category) {
+        this.manualName = manualName;
+        this.category = category;
+    }
 }

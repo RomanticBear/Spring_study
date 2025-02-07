@@ -6,13 +6,12 @@ package me.gom.springbootdeveloper.controller;
 import lombok.RequiredArgsConstructor;
 import me.gom.springbootdeveloper.Service.ManualService;
 import me.gom.springbootdeveloper.domain.Manual;
-import me.gom.springbootdeveloper.dto.AddMaualRequest;
+import me.gom.springbootdeveloper.dto.AddManualRequest;
 import me.gom.springbootdeveloper.dto.ManualResponse;
 import me.gom.springbootdeveloper.dto.UpdateManualRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -21,10 +20,9 @@ public class ManualApiController {
 
     private final ManualService manualService;
 
-
     // 메뉴얼 생성 controller
     @PostMapping("/api/manuals")
-    public ResponseEntity<Manual> addArticle(@RequestBody AddMaualRequest request){
+    public ResponseEntity<Manual> addArticle(@RequestBody AddManualRequest request){
         Manual savedManual=manualService.save(request);
 
         // 요청한 자원이 성공적으로 생성되었으며 저장된 메뉴얼 정보를 응답 객체에 담아 전송
