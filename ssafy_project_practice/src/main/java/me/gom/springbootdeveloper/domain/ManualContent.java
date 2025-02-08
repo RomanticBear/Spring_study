@@ -2,6 +2,8 @@ package me.gom.springbootdeveloper.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Getter
@@ -17,9 +19,11 @@ public class ManualContent {
     @Column(name = "manualContentId", updatable = false)
     private Long manualContentId;
 
+
     // Manual과의 ManyToOne 관계 설정 (여러 콘텐츠가 하나의 메뉴얼에 속함)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manualId", nullable = false, foreignKey = @ForeignKey(name = "fk_manual_id"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Manual manual;
 
     // 요청 상태 (텍스트, 비디오, 동영상)

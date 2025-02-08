@@ -4,7 +4,11 @@ package me.gom.springbootdeveloper.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,6 +27,7 @@ public class Manual {
     // Store와의 ManyToOne 관계 설정 (여러 메뉴얼이 하나의 지점에 속함)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "storeId", nullable = false, foreignKey = @ForeignKey(name = "fk_store_id_manual"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Store store;
 
     // 메뉴얼 카테고리 (예: 음료 제조, 장비, 포스기)
@@ -43,4 +48,7 @@ public class Manual {
         this.manualName = manualName;
         this.category = category;
     }
+
+    @OneToMany(mappedBy = "manual", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<ManualContent> manualContents;
 }

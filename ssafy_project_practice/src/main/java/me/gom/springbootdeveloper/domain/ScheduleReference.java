@@ -3,6 +3,9 @@ package me.gom.springbootdeveloper.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -20,8 +23,9 @@ public class ScheduleReference {
     private Long scheduleReferenceId;
 
     // 대타 희망자
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "userId", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", nullable = false, foreignKey = @ForeignKey(name = "fk_user_id_schedule_ref"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
     // 대타 희망 날짜

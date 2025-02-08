@@ -3,6 +3,10 @@ package me.gom.springbootdeveloper.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,17 +22,13 @@ public class User {
     private Long userId;
 
     // 사용자 - 상점 관계 -> 다 대 1
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // ✅ Cascade 설정 추가
-    @JoinColumn(
-            name = "storeId",
-            nullable = false,
-            foreignKey = @ForeignKey(
-                    name = "fk_store_id_user",
-                    foreignKeyDefinition = "FOREIGN KEY (store_id) REFERENCES store(store_id) ON DELETE CASCADE" // ✅ CASCADE 적용
-            )
-    )
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "storeId", nullable = false, foreignKey = @ForeignKey(name = "fk_store_id_user"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Store store;
 
+//    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+//    private List<Manual> manuals;
 
     // 직책
     @Enumerated(EnumType.STRING)

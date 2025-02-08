@@ -3,6 +3,9 @@ package me.gom.springbootdeveloper.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -19,16 +22,17 @@ public class WorkInformation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long scheduleId;
 
+
     // WorkInformation - store 관계 -> 다 대 1 : 여러개의 근무 정보가 하나의 지점에 연결 가능
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "storeId", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_store_id_work_info",
-                    foreignKeyDefinition = "FOREIGN KEY (store_id) REFERENCES store(store_id) ON DELETE CASCADE"))
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "storeId", nullable = false, foreignKey = @ForeignKey(name = "fk_store_id_work_info"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Store store;
 
     // 근무정보 - 사용자 관계 -> 다 대 1
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "userId", nullable = false,  foreignKey = @ForeignKey(name = "fk_user_id_work_info"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;    // 근무자
     private LocalDate workDate;    // 근무 날짜
     private LocalTime startTime;    // 시작 시간
